@@ -6,7 +6,7 @@ Pod::Spec.new do |spec|
   spec.authors          = { 'Digital Brain' => 'digitalbrain@nomailhere.com' }
   spec.summary          = 'RSASHA1Signer'
   spec.source           = { :git => 'https://github.com/digitalbrain/RSASHA1Signer_iOs'}
-  spec.source_files     = '*.{h,m,a}'
+  spec.source_files     = 'RSASHA1Signer/**/*.{h,m}'
 
   spec.requires_arc     = true
 end
