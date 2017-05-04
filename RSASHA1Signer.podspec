@@ -7,7 +7,7 @@ Pod::Spec.new do |spec|
   spec.summary          = 'RSASHA1Signer'
   spec.source           = { :git => 'https://github.com/digitalbrain/RSASHA1Signer_iOs'}
   spec.source_files     = 'RSASHA1Signer/**/*.{h,m,a}'
-  spec.xcconfig         = { 'HEADER_SEARCH_PATHS' => '${PODS_ROOT}/RSASHA1Signer/RSASHA1Signer/openSSL',
+  spec.xcconfig         = { 'HEADER_SEARCH_PATHS' => '${PODS_ROOT}/RSASHA1Signer/RSASHA1Signer/openSSL/**',
                             'LIBRARY_SEARCH_PATHS' => '${PODS_ROOT}/RSASHA1Signer/RSASHA1Signer/openSSL/include'
                              }
   spec.requires_arc     = true
