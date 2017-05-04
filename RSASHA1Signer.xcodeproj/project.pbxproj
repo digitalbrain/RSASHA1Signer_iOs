@@ -269,7 +269,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_SEARCH_PATHS = "";
-				HEADER_SEARCH_PATHS = $PROJECT_DIR/openSSL/include/;
+				HEADER_SEARCH_PATHS = $PROJECT_DIR/RSASHA1Signer/openSSL/include/;
 				INFOPLIST_FILE = RSASHA1Signer/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -277,7 +277,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/RSASHA1Signer",
-					"$(PROJECT_DIR)/openssl/**",
+					"$PROJECT_DIR/RSASHA1Signer/openSSL/**",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zerounotribe.RSASHA1Signer;
@@ -298,7 +298,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_SEARCH_PATHS = "";
-				HEADER_SEARCH_PATHS = $PROJECT_DIR/openSSL/include/;
+				HEADER_SEARCH_PATHS = $PROJECT_DIR/RSASHA1Signer/openSSL/include/;
 				INFOPLIST_FILE = RSASHA1Signer/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -306,7 +306,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/RSASHA1Signer",
-					"$(PROJECT_DIR)/openssl/**",
+					"$PROJECT_DIR/RSASHA1Signer/openSSL/**",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zerounotribe.RSASHA1Signer;
