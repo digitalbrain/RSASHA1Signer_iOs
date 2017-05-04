@@ -11,6 +11,6 @@ Pod::Spec.new do |spec|
                             'LIBRARY_SEARCH_PATHS' => '${PODS_ROOT}/RSASHA1Signer/RSASHA1Signer/openSSL/include'
                              }
   spec.requires_arc     = true
-  spec.vendored_libraries = 'libssl.a', 'libcrypto.a'
+  spec.vendored_libraries = 'RSASHA1Signer/libssl.a', 'RSASHA1Signer/libcrypto.a'
 end
 
