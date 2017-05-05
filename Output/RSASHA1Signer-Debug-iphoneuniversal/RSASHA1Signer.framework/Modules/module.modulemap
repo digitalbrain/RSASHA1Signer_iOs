@@ -1,0 +1,6 @@
+framework module RSASHA1Signer {
+  umbrella header "RSASHA1Signer.h"
+
+  export *
+  module * { export * }
+}

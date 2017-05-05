@@ -6,6 +6,20 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		B45142611EBC866200C1036B /* RSASHA1Signer-Universal */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = B45142641EBC866300C1036B /* Build configuration list for PBXAggregateTarget "RSASHA1Signer-Universal" */;
+			buildPhases = (
+				B45142651EBC86B100C1036B /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = "RSASHA1Signer-Universal";
+			productName = "RSASHA1Signer-Universal";
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		B47728301EBA0E0E00CEA146 /* RSASHA1Signer.h in Headers */ = {isa = PBXBuildFile; fileRef = B477282E1EBA0E0E00CEA146 /* RSASHA1Signer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B477283A1EBA0E3900CEA146 /* NSData+Base64.h in Headers */ = {isa = PBXBuildFile; fileRef = B47728361EBA0E3900CEA146 /* NSData+Base64.h */; };
@@ -115,6 +129,11 @@
 				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = 01TRIBE;
 				TargetAttributes = {
+					B45142611EBC866200C1036B = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = B4WC5QCX33;
+						ProvisioningStyle = Automatic;
+					};
 					B477282A1EBA0E0E00CEA146 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = B4WC5QCX33;
@@ -135,6 +154,7 @@
 			projectRoot = "";
 			targets = (
 				B477282A1EBA0E0E00CEA146 /* RSASHA1Signer */,
+				B45142611EBC866200C1036B /* RSASHA1Signer-Universal */,
 			);
 		};
 /* End PBXProject section */
@@ -149,6 +169,22 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		B45142651EBC86B100C1036B /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "######################\n# Options\n######################\n\nREVEAL_ARCHIVE_IN_FINDER=false\n\nFRAMEWORK_NAME=\"${PROJECT_NAME}\"\n\nSIMULATOR_LIBRARY_PATH=\"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/${FRAMEWORK_NAME}.framework\"\n\nDEVICE_LIBRARY_PATH=\"${BUILD_DIR}/${CONFIGURATION}-iphoneos/${FRAMEWORK_NAME}.framework\"\n\nUNIVERSAL_LIBRARY_DIR=\"${BUILD_DIR}/${CONFIGURATION}-iphoneuniversal\"\n\nFRAMEWORK=\"${UNIVERSAL_LIBRARY_DIR}/${FRAMEWORK_NAME}.framework\"\n\n\n######################\n# Build Frameworks\n######################\n\nxcodebuild -workspace ${PROJECT_NAME}.xcworkspace -scheme ${PROJECT_NAME} -sdk iphonesimulator -configuration ${CONFIGURATION} clean build CONFIGURATION_BUILD_DIR=${BUILD_DIR}/${CONFIGURATION}-iphonesimulator 2>&1\n\nxcodebuild -workspace ${PROJECT_NAME}.xcworkspace -scheme ${PROJECT_NAME} -sdk iphoneos -configuration ${CONFIGURATION} clean build CONFIGURATION_BUILD_DIR=${BUILD_DIR}/${CONFIGURATION}-iphoneos 2>&1\n\n######################\n# Create directory for universal\n######################\n\nrm -rf \"${UNIVERSAL_LIBRARY_DIR}\"\n\nmkdir \"${UNIVERSAL_LIBRARY_DIR}\"\n\nmkdir \"${FRAMEWORK}\"\n\n\n######################\n# Copy files Framework\n######################\n\ncp -r \"${DEVICE_LIBRARY_PATH}/.\" \"${FRAMEWORK}\"\n\n\n######################\n# Make an universal binary\n######################\n\nlipo \"${SIMULATOR_LIBRARY_PATH}/${FRAMEWORK_NAME}\" \"${DEVICE_LIBRARY_PATH}/${FRAMEWORK_NAME}\" -create -output \"${FRAMEWORK}/${FRAMEWORK_NAME}\" | echo\n\n# For Swift framework, Swiftmodule needs to be copied in the universal framework\nif [ -d \"${SIMULATOR_LIBRARY_PATH}/Modules/${FRAMEWORK_NAME}.swiftmodule/\" ]; then\ncp -f ${SIMULATOR_LIBRARY_PATH}/Modules/${FRAMEWORK_NAME}.swiftmodule/* \"${FRAMEWORK}/Modules/${FRAMEWORK_NAME}.swiftmodule/\" | echo\n                                                                      fi\n                                                                      \n                                                                      if [ -d \"${DEVICE_LIBRARY_PATH}/Modules/${FRAMEWORK_NAME}.swiftmodule/\" ]; then\n                                                                      cp -f ${DEVICE_LIBRARY_PATH}/Modules/${FRAMEWORK_NAME}.swiftmodule/* \"${FRAMEWORK}/Modules/${FRAMEWORK_NAME}.swiftmodule/\" | echo\n                                                                      fi\n                                                                      \n                                                                      ######################\n                                                                      # On Release, copy the result to release directory\n                                                                      ######################\n                                                                      OUTPUT_DIR=\"${PROJECT_DIR}/Output/${FRAMEWORK_NAME}-${CONFIGURATION}-iphoneuniversal/\"\n                                                                      \n                                                                      rm -rf \"$OUTPUT_DIR\"\n                                                                      mkdir -p \"$OUTPUT_DIR\"\n                                                                      \n                                                                      cp -r \"${FRAMEWORK}\" \"$OUTPUT_DIR\"\n                                                                      \n                                                                      if [ ${REVEAL_ARCHIVE_IN_FINDER} = true ]; then\n                                                                      open \"${OUTPUT_DIR}/\"\n                                                                      fi";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		B47728261EBA0E0E00CEA146 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -162,6 +198,22 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		B45142621EBC866300C1036B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = B4WC5QCX33;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		B45142631EBC866300C1036B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = B4WC5QCX33;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		B47728311EBA0E0E00CEA146 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -268,6 +320,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = "";
 				HEADER_SEARCH_PATHS = $PROJECT_DIR/RSASHA1Signer/openSSL/include/;
 				INFOPLIST_FILE = RSASHA1Signer/Info.plist;
@@ -297,6 +350,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = "";
 				HEADER_SEARCH_PATHS = $PROJECT_DIR/RSASHA1Signer/openSSL/include/;
 				INFOPLIST_FILE = RSASHA1Signer/Info.plist;
@@ -319,6 +373,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		B45142641EBC866300C1036B /* Build configuration list for PBXAggregateTarget "RSASHA1Signer-Universal" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B45142621EBC866300C1036B /* Debug */,
+				B45142631EBC866300C1036B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		B47728251EBA0E0D00CEA146 /* Build configuration list for PBXProject "RSASHA1Signer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
